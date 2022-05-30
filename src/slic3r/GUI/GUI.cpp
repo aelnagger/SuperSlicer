@@ -198,6 +198,8 @@ void change_opt_value(DynamicPrintConfig& config, const t_config_option_key& opt
 				config.set_key_value(opt_key, new ConfigOptionEnum<InfillPattern>(boost::any_cast<InfillPattern>(value)));
 			else if (opt_key.compare("complete_objects_sort") == 0)
 				config.set_key_value(opt_key, new ConfigOptionEnum<CompleteObjectSort>(boost::any_cast<CompleteObjectSort>(value)));
+			else if (opt_key.compare("output_format") == 0)
+				config.set_key_value(opt_key, new ConfigOptionEnum<OutputFormat>(boost::any_cast<OutputFormat>(value)));
 			else if (opt_key.compare("display_orientation") == 0)
 				config.set_key_value(opt_key, new ConfigOptionEnum<SLADisplayOrientation>(boost::any_cast<SLADisplayOrientation>(value)));
 			else if (opt_key.compare("gcode_flavor") == 0)

@@ -5712,7 +5712,7 @@ void PrintConfigDef::init_sla_params()
     def->enum_labels.push_back(L("Masked CWS"));
     def->enum_labels.push_back(L("Prusa SL1"));
     def->mode = comAdvanced; // output_format should be preconfigured in profiles;
-    def->set_default_value(new ConfigOptionEnum<OutputFormat>(ofMaskedCWS));
+    def->set_default_value(new ConfigOptionEnum<OutputFormat>(ofSL1));
 }
 
 void PrintConfigDef::handle_legacy(t_config_option_key &opt_key, std::string &value)
