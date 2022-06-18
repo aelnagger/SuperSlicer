@@ -614,7 +614,8 @@ void SLAPrint::finalize()
 std::string SLAPrint::output_filename(const std::string &filename_base) const
 {
     DynamicConfig config = this->finished() ? this->print_statistics().config() : this->print_statistics().placeholders();
-    return this->PrintBase::output_filename(m_print_config.output_filename_format.value, ".sl1", filename_base, &config);
+    std::string extension = m_printer->filename_extension();
+    return this->PrintBase::output_filename(m_print_config.output_filename_format.value, extension, filename_base, &config);
 }
 
 std::pair<PrintBase::PrintValidationError, std::string> SLAPrint::validate() const

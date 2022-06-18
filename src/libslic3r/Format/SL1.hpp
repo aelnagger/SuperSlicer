@@ -21,7 +21,7 @@ public:
     SL1Archive() = default;
     explicit SL1Archive(const SLAPrinterConfig &cfg): m_cfg(cfg) {}
     explicit SL1Archive(SLAPrinterConfig &&cfg): m_cfg(std::move(cfg)) {}
-    
+    std::string filename_extension() const override { return "sl1"; }
     void export_print(Zipper &zipper, const SLAPrint &print, const std::string &projectname = "") override;
 };
     

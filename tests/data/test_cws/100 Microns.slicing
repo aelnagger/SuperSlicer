@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SliceBuildConfig FileVersion="2">
+  <DotsPermmX>21.3333333333333</DotsPermmX>
+  <DotsPermmY>21.3333333333333</DotsPermmY>
+  <XResolution>2560</XResolution>
+  <YResolution>1440</YResolution>
+  <BlankTime>11200</BlankTime>
+  <PlatformTemp>75</PlatformTemp>
+  <ExportSVG>0</ExportSVG>
+  <Export>True</Export>
+  <ExportPNG>False</ExportPNG>
+  <XOffset>0</XOffset>
+  <YOffset>0</YOffset>
+  <Direction>Bottom_Up</Direction>
+  <LiftDistance>4</LiftDistance>
+  <SlideTiltValue>0</SlideTiltValue>
+  <AntiAliasing>False</AntiAliasing>
+  <UseMainLiftGCode>False</UseMainLiftGCode>
+  <AntiAliasingValue>0</AntiAliasingValue>
+  <LiftFeedRate>50</LiftFeedRate>
+  <BottomLiftFeedRate>25</BottomLiftFeedRate>
+  <LiftRetractRate>50</LiftRetractRate>
+  <ExportOption>ZIP</ExportOption>
+  <RenderOutlines>False</RenderOutlines>
+  <OutlineWidth_Inset>2</OutlineWidth_Inset>
+  <OutlineWidth_Outset>0</OutlineWidth_Outset>
+  <FlipX>False</FlipX>
+  <FlipY>False</FlipY>
+  <Notes>Use these as a place to start. Don't forget to copy the start, lift and end GCODES to your new profiles you create!</Notes>
+  <GCodeHeader>;Here you can set any G or M-Code which should be executed BEFORE the build process
+G21 ;Set units to be mm
+G91 ;Relative Positioning
+M17 ;Enable motors
+M106 S255
+;********** Header End **********
+</GCodeHeader>
+  <GCodeFooter>;********** Footer Start222 ********
+;Here you can set any G or M-Code which should be executed after the last Layer is Printed!!!!
+M106 S0
+G1 Z100.0 F150.0
+G04 P30000
+M18 ;Disable Motors
+;********** Footer End ********</GCodeFooter>
+  <GCodePreslice>;********** Pre-Slice Start ********
+;Set up any GCode here to be executed before a lift
+;********** Pre-Slice End **********
+</GCodePreslice>
+  <GCodeLift>;********** Lift Sequence ********
+M106 S0
+G1{$SlideTiltVal != 0? X$SlideTiltVal:} Z($ZLiftDist * $ZDir) F{$CURSLICE &lt; $NumFirstLayers?$ZBottomLiftRate:$ZLiftRate}
+G1{$SlideTiltVal != 0? X($SlideTiltVal * -1):} Z(($LayerThickness-$ZLiftDist) * $ZDir) F$ZRetractRate
+;&lt;Delay&gt; %d$BlankTime
+M106 S255
+;********** Lift Sequence **********
+</GCodeLift>
+  <GCodeLayer>;********** Layer Start ********
+;Here you can set any G or M-Code which should be executed per-layer during the build process
+&lt;slice&gt; $CURSLICE
+G91 ;Relative Positioning
+M17 ;Enable motors
+;********** Layer End **********
+</GCodeLayer>
+  <SelectedInk>Monocure STD 100μm</SelectedInk>
+  <InkConfig>
+    <Name>Default 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>8000</LayerTime>
+    <FirstLayerTime>70000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Monocure Rapid Clear 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>7000</LayerTime>
+    <FirstLayerTime>40000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Clear 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>20000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Monocure STD 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>10000</LayerTime>
+    <FirstLayerTime>50000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>FTD Standard 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>20000</LayerTime>
+    <FirstLayerTime>65000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Black 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Gray 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>16000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao White 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Green 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Orange 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Red 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>16000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Wanhao Yellow 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Monocure Rapid Grey 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>8000</LayerTime>
+    <FirstLayerTime>50000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>Monocure Rapid Black 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>8000</LayerTime>
+    <FirstLayerTime>50000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>FTD IB 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>15000</LayerTime>
+    <FirstLayerTime>80000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <InkConfig>
+    <Name>FTD Snow White 100μm</Name>
+    <SliceHeight>0.100000001490116</SliceHeight>
+    <LayerTime>7500</LayerTime>
+    <FirstLayerTime>60000</FirstLayerTime>
+    <NumberofBottomLayers>4</NumberofBottomLayers>
+    <ResinPriceL>0</ResinPriceL>
+  </InkConfig>
+  <MinTestExposure>500</MinTestExposure>
+  <TestExposureStep>200</TestExposureStep>
+  <ExportPreview>None</ExportPreview>
+  <UserParameters />
+</SliceBuildConfig>

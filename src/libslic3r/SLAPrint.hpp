@@ -383,6 +383,8 @@ public:
     virtual ~SLAPrinter() = default;
     
     virtual void apply(const SLAPrinterConfig &cfg) = 0;
+
+    virtual std::string filename_extension() const = 0;
     
     // Fn have to be thread safe: void(sla::RasterBase& raster, size_t lyrid);
     template<class Fn> void draw_layers(size_t layer_num, Fn &&drawfn)

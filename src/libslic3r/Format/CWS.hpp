@@ -14,6 +14,7 @@ public:
     MaskedCWSArchive() = default;
     explicit MaskedCWSArchive(const SLAPrinterConfig &cfg): m_cfg(cfg) {}
     explicit MaskedCWSArchive(SLAPrinterConfig &&cfg): m_cfg(std::move(cfg)) {}
+    std::string filename_extension() const override { return "cws"; }
     void export_print(Zipper &zipper, const SLAPrint &print, const std::string &projectname = "") override;
 };
 } // namespace Slic3r
