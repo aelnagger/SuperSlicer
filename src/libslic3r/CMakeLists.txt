@@ -103,6 +103,10 @@ add_library(libslic3r STATIC
     Format/STL.hpp
     Format/SL1.hpp
     Format/SL1.cpp
+    Format/SL1_SVG.hpp
+    Format/SL1_SVG.cpp
+    Format/AnycubicSLA.hpp
+    Format/AnycubicSLA.cpp
     Format/STEP.hpp
     Format/STEP.cpp
     Format/SLAArchive.hpp

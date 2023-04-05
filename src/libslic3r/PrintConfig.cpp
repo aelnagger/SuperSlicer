@@ -6775,7 +6775,9 @@ void PrintConfigDef::init_sla_params()
     def->multiline = true;
     def->full_width = true;
     def->height = 13;
-    def->mode = comAdvancedE | comPrusa;
+    // TODO currently notes are the only way to pass data
+    // for non-PrusaResearch printers. We therefore need to always show them 
+    def->mode = comSimple;
     def->set_default_value(new ConfigOptionString(""));
 
     def = this->add("material_vendor", coString);
