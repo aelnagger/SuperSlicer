@@ -216,6 +216,7 @@ void Tab::create_preset_tab()
 
     add_scaled_button(panel, &m_btn_compare_preset, "compare");
     add_scaled_button(panel, &m_btn_save_preset, "save");
+    add_scaled_button(panel, &m_btn_save_preset_as, "save_as");
     add_scaled_button(panel, &m_btn_delete_preset, "cross");
     if (m_type == Preset::Type::TYPE_PRINTER)
         add_scaled_button(panel, &m_btn_edit_ph_printer, "cog");
@@ -229,6 +230,8 @@ void Tab::create_preset_tab()
     m_btn_compare_preset->SetToolTip(_L("Compare this preset with some another"));
     // TRN "Save current Settings"
     m_btn_save_preset->SetToolTip(from_u8((boost::format(_utf8(L("Save current %s"))) % m_title).str()));
+    m_btn_save_preset_as->SetToolTip(from_u8((boost::format(_utf8(L("Save current %s as new preset"))) % m_title).str()));
+
     m_btn_delete_preset->SetToolTip(_(L("Delete this preset")));
     m_btn_delete_preset->Hide();
 
@@ -280,6 +283,8 @@ void Tab::create_preset_tab()
     m_hsizer->Add(m_presets_choice, 0, wxLEFT | wxRIGHT | wxTOP | wxALIGN_CENTER_VERTICAL, 3);
     m_hsizer->AddSpacer(int(4*scale_factor));
     m_hsizer->Add(m_btn_save_preset, 0, wxALIGN_CENTER_VERTICAL);
+    m_hsizer->AddSpacer(int(4 * scale_factor));
+    m_hsizer->Add(m_btn_save_preset_as, 0, wxALIGN_CENTER_VERTICAL);
     m_hsizer->AddSpacer(int(4 * scale_factor));
     m_hsizer->Add(m_btn_delete_preset, 0, wxALIGN_CENTER_VERTICAL);
     if (m_btn_edit_ph_printer) {
@@ -371,7 +376,10 @@ void Tab::create_preset_tab()
     m_hsizer->Add(m_page_view, 1, wxEXPAND | wxLEFT, 5);
 
     m_btn_compare_preset->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) { compare_preset(); }));
-    m_btn_save_preset->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) { save_preset(); }));
+    m_btn_save_preset->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) {
+                                save_preset(this->get_presets()->get_selected_preset_name());
+                            }));
+    m_btn_save_preset_as->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) { save_preset(); }));
     m_btn_delete_preset->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) { delete_preset(); }));
     m_btn_hide_incompatible_presets->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) {
         toggle_show_hide_incompatible();
