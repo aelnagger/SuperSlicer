@@ -312,6 +312,7 @@ enum OutputFormat : uint16_t
     ofMaskedCWS = 1 << 0,
     ofSL1 = 1 << 1,
     ofGCode = 1 << 2,
+    ofCTB = 1 << 3,
     ofUnknown = 1 << 15
 };
 

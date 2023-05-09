@@ -59,6 +59,7 @@ static const t_config_enum_values s_keys_map_CompleteObjectSort {
 CONFIG_OPTION_ENUM_DEFINE_STATIC_MAPS(CompleteObjectSort)
 
 static const t_config_enum_values s_keys_map_OutputFormat {
+    {"ctb", ofCTB},
     {"mCWS", ofMaskedCWS},
     {"SL1", ofSL1},
 };
